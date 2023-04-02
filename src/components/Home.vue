@@ -19,6 +19,18 @@
             </a-select-option>
           </template>
         </a-auto-complete>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-search icon-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
       </a-col>
 
       <a-col class="col-btn" :xs="7" :sm="7" :md="7" :lg="4" :xl="4">
@@ -47,9 +59,9 @@
   const showData = ref(false);
 
   const handleOnSearch = (searchText) => {
-    if(searchText === ""){
+    if (searchText === "") {
       countries.getCountries(searchText);
-    }else{
+    } else {
       onSearch(searchText);
     }
   };
@@ -70,9 +82,8 @@
   };
 
   const sheckData = () => {
-
     if (value.value.length === 0) {
-      console.log("entro")
+      console.log("entro");
       showData.value = false;
       countries.clearData();
     }
@@ -89,22 +100,25 @@
       height: 90vh;
     }
 
-    .btn-form{
-    margin-top: 40px;
-  }
-
-
+    .btn-form {
+      margin-top: 40px;
+      box-shadow: -1px 0px 4px 0px rgba(207, 207, 207, 0.75);
+      -webkit-box-shadow: -1px 0px 4px 0px rgba(207, 207, 207, 0.75);
+      -moz-box-shadow: -1px 0px 4px 0px rgba(207, 207, 207, 0.75);
+    }
   }
   @media only screen and (min-width: 769px) {
     .container {
       height: 95vh;
     }
 
-    .btn-form{
-    margin-top: 52px;
-    width: 80%;
-  }
-
+    .btn-form {
+      margin-top: 52px;
+      width: 80%;
+      box-shadow: -1px 0px 9px 0px rgba(207, 207, 207, 0.75);
+      -webkit-box-shadow: -1px 0px 9px 0px rgba(207, 207, 207, 0.75);
+      -moz-box-shadow: -1px 0px 9px 0px rgba(207, 207, 207, 0.75);
+    }
   }
   .input-principal {
     position: absolute;
@@ -117,7 +131,6 @@
     justify-content: center;
     align-items: center;
   }
-
 
   .col-btn {
     display: flex;
@@ -160,5 +173,12 @@
     margin-top: 20px;
     width: 100%;
     height: 100%;
+  }
+
+  .icon-search {
+    position: absolute;
+    color: gray;
+    right: 12px;
+    top: 8px;
   }
 </style>
