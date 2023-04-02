@@ -3,8 +3,8 @@
   <a-typography>
     <a-typography-title class="title">
       <span class="text-title">
-        Descubre más sobre nuestro planeta: encuentra información sobre países y
-        sus culturas
+        No se encontro el país que buscas, intenta con uno diferente o revisa la
+        ortografía
       </span>
     </a-typography-title>
   </a-typography>
@@ -21,7 +21,7 @@
       onMounted(() => {
         lottie.loadAnimation({
           container: lottieContainer.value,
-          path: `https://assets10.lottiefiles.com/packages/lf20_b1imuadj.json`,
+          path: `https://assets8.lottiefiles.com/private_files/lf30_zncbuxbi.json`,
           renderer: "svg",
           loop: true,
           autoplay: true,
@@ -43,39 +43,39 @@
     }
 
     .title {
-    position: absolute;
-    text-align: center;
-    margin-top: 20%;
-    color: gray;
-    bottom: 30px;
-    width: 90%;
-  }
+      position: absolute;
+      text-align: center;
+      margin-top: 20%;
+      color: gray;
+      bottom: 30px;
+      width: 90%;
+    }
 
-  .text-title {
-    font-size: 14px;
-    text-align: center;
-  }
+    .text-title {
+      font-size: 14px;
+      text-align: center;
+    }
   }
   @media only screen and (min-width: 769px) {
     .animation {
-      width: 400px;
+      width: 450px;
       margin-right: auto;
       margin-left: auto;
       margin-top: 8%;
     }
 
     .title {
-    position: absolute;
-    text-align: center;
-    margin-top: 20%;
-    color: gray;
-    bottom: 30px;
-    width: 90%;
-  }
+      position: absolute;
+      text-align: center;
+      margin-top: 20%;
+      color: gray;
+      bottom: 30px;
+      width: 90%;
+    }
 
-  .text-title {
-    font-size: 18px;
-    text-align: center;
-  }
+    .text-title {
+      font-size: 18px;
+      text-align: center;
+    }
   }
 </style>

@@ -20,17 +20,17 @@
           </template>
         </a-auto-complete>
         <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-search icon-search"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-            />
-          </svg>
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-search icon-search"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          />
+        </svg>
       </a-col>
 
       <a-col class="col-btn" :xs="7" :sm="7" :md="7" :lg="4" :xl="4">
@@ -52,6 +52,7 @@
   import TableCountrie from "@/components/TableCountrie.vue";
   import debounce from "lodash/debounce";
   import AnimationHome from "@/components/AnimationHome.vue";
+  import { Modal } from "ant-design-vue";
 
   const countries = useCountriesStore();
 
@@ -72,20 +73,25 @@
   }, 5000);
 
   const showCountries = () => {
-    if (value.value.length === 0) {
+    if (value.value.length === 0 || !sheckData(value.value)) {
+      Modal.warning({
+        title: () => "¡Ups! Dejaste el campo vacío o ingresaste un número",
+        content: () => "Por favor, ingresa el nombre de un país válido",
+      });
       showData.value = false;
       countries.clearData();
-    } else {
+    }else {
       countries.getCountries(value.value);
       showData.value = true;
     }
   };
 
-  const sheckData = () => {
-    if (value.value.length === 0) {
-      console.log("entro");
-      showData.value = false;
-      countries.clearData();
+  const sheckData = (texto) => {
+    var regex = /[0-9]/;
+    if (regex.test(texto)) {
+      return false; 
+    } else {
+      return true; 
     }
   };
 

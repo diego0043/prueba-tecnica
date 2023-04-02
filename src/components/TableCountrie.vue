@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="data.length > 0">
     <a-row class="header-container">
       <a-col class="header-table" :xs="2" :sm="2" :md="2" :lg="2" :xl="2">
         <span>#</span>
@@ -25,10 +25,15 @@
       :countrie="item"
     />
   </div>
+  <div v-if="data.length === 0">
+    <AnimationNotFound />
+  </div>
 </template>
 
 <script setup>
   import TableItem from "@/components/TableItem.vue";
+import AnimationNotFoundVue from "./AnimationNotFound.vue";
+  import AnimationNotFound from "@/components/AnimationNotFound.vue";
   const props = defineProps({
     data: {
       type: Array,

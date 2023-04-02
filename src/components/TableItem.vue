@@ -37,30 +37,72 @@
   <a-modal
     v-model:visible="visible"
     width="1000px"
-    :title="name"
+    :title="`País: `+ name" 
     :footer="null"
     @ok="handleOk"
   >
     <div class="modal">
       <a-row>
-        <a-col class="col-flag" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <a-col class="col-spacing" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <span class="title"> Bandera </span>
           <img class="img-modal" :src="flag" alt="flag" />
         </a-col>
-        <a-col :xs="23" :sm="23" :md="12" :lg="12" :xl="12">
+        <a-col class="col-spacing" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <span class="title"> Información </span>
           <a-list bordered :data-source="data">
             <template #renderItem="{ item }">
               <a-list-item>
-                <div>
-                  <span style="font-weight: bold"> {{ item.title }} : </span>
-                  <span style="margin-left: 10px">
-                    {{ item.value }}
-                  </span>
-                </div>
+                <a-row style="width: 100%">
+                  <a-col
+                    :xs="12"
+                    :sm="12"
+                    :md="12"
+                    :lg="12"
+                    :xl="12"
+                    style="font-weight: bold"
+                  >
+                    {{ item.title }} :
+                  </a-col>
+                  <a-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+                    {{
+                      Array.isArray(item.value) === true
+                        ? item.value[0]
+                        : item.value
+                    }}
+                  </a-col>
+                </a-row>
               </a-list-item>
             </template>
           </a-list>
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col class="col-spacing" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+          <span class="title"> Idiomas oficiales </span>
+          <div class="container-traducciones">
+            <a-tag
+              v-for="languages in countrie.languages"
+              :key="languages"
+              color="green"
+              class="traducciones"
+              >{{ languages }}
+              </a-tag>
+          </div>
+        </a-col>
+      </a-row>
+      <a-row>
+        <a-col class="col-spacing" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+          <span class="title"> Traducciones </span>
+          <div class="container-traducciones">
+            <a-tag
+              v-for="traduction in countrie.translations"
+              :key="traduction"
+              color="blue"
+              class="traducciones"
+              >{{ traduction.common }}
+              
+              </a-tag>
+          </div>
         </a-col>
       </a-row>
     </div>
@@ -99,15 +141,15 @@
     },
     {
       title: "Capital",
-      value: props.countrie.capital[0],
+      value: props.countrie.capital,
     },
     {
       title: "Población",
-      value: props.poblation,
+      value: props.poblation.toLocaleString() + " habitantes",
     },
     {
-      title: "Area",
-      value: props.countrie.area + " km²",
+      title: "Área",
+      value: props.countrie.area.toLocaleString() + " km²",
     },
   ];
   const showModal = () => {
@@ -147,8 +189,8 @@
 
   .img-modal {
     display: block;
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
     margin-right: auto;
     margin-left: auto;
   }
@@ -159,7 +201,7 @@
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .modal {
@@ -176,7 +218,19 @@
     background: #c9c6c6;
   }
 
-  .col-flag {
+  .col-spacing {
     margin-bottom: 30px;
+  }
+
+  .container-traducciones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    ;
+    
+  }
+
+  .traducciones {
+    margin-bottom: 10px;
   }
 </style>
